@@ -1,3 +1,6 @@
+import random as rd
+import time
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
@@ -84,6 +87,11 @@ class CalendrierAvant:
         # Bouton réponse
         if not human or reponse:
             ans_btn = self.wait.until(EC.element_to_be_clickable((By.XPATH, ans_btn_xpath)))
+
+            # Make bots sleeping a random time between 1 and 8 seconds to avoid too good or too bad scores
+            if not human:
+                time.sleep(rd.random()*7 + 1)
+
             self.action.move_to_element(ans_btn)
             self.action.click(ans_btn)
             self.action.perform()
