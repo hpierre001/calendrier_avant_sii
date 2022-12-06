@@ -71,7 +71,7 @@ class CalendrierAvant:
         self.action.perform()
 
         reponse = None
-        if question_reponse:
+        if question_reponse and human:
             question = self.wait.until(EC.presence_of_element_located((By.XPATH, ".//div[@class='question']/span"))).text
             try:
                 reponse = question_reponse[question]
