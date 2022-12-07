@@ -59,7 +59,7 @@ class CalendrierAvant:
 
         self.wait.until(EC.presence_of_element_located((By.XPATH, ".//login")))
 
-    def quiz(self, day_num, question_reponse: dict = None, human: bool = False):
+    def quiz(self, day_num, question_reponse: dict = None, human: bool = False, real_human: bool = False):
         # Case du jour
         day_case = self.wait.until(myEC.element_located_is_steady((By.XPATH, f".//div[div[@class='numero' and contains(@style, 'img/avent/{day_num}.png')]]")))
         self.action.move_to_element(day_case)
@@ -74,7 +74,7 @@ class CalendrierAvant:
         self.action.perform()
 
         reponse = None
-        if question_reponse and human:
+        if question_reponse:
             question = self.wait.until(EC.presence_of_element_located((By.XPATH, ".//div[@class='question']/span"))).text
             try:
                 reponse = question_reponse[question]
@@ -90,7 +90,9 @@ class CalendrierAvant:
 
             # Make bots sleeping a random time between 1 and 8 seconds to avoid too good or too bad scores
             if not human:
-                time.sleep(rd.random()*7 + 1)
+                time.sleep(rd.random()*7)
+            elif real_human:
+                time.sleep(rd.random())
 
             self.action.move_to_element(ans_btn)
             self.action.click(ans_btn)

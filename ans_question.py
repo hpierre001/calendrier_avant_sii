@@ -26,7 +26,7 @@ if __name__ == "__main__":
         calendrier_avant.login(mail, password)
         for day in days:
             try:
-                question_reponse.update(calendrier_avant.quiz(day, question_reponse, True))
+                question_reponse.update(calendrier_avant.quiz(day, question_reponse, True, False))
             except Exception as ex:
                 print(ex)
                 continue
