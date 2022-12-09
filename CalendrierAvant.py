@@ -78,7 +78,7 @@ class CalendrierAvant:
             question = self.wait.until(EC.presence_of_element_located((By.XPATH, ".//div[@class='question']/span"))).text
             try:
                 reponse = question_reponse[question]
-                ans_btn_xpath = f".//button[.//div[text()='{reponse}']]"
+                ans_btn_xpath = f'.//button[.//div[text()="{reponse}"]]'
             except KeyError:
                 ans_btn_xpath = ".//button[@class='mat-raised-button mat-button-base encours ng-star-inserted']"
         else:
@@ -90,7 +90,7 @@ class CalendrierAvant:
 
             # Make bots sleeping a random time between 1 and 8 seconds to avoid too good or too bad scores
             if not human:
-                time.sleep(rd.random()*7)
+                time.sleep(rd.random()*5)
             elif real_human:
                 time.sleep(rd.random())
 
